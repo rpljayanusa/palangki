@@ -1,7 +1,7 @@
-<?php if ($this->session->userdata('jenis_pengguna') == 'pemilik' ): ?>
-    <a href="<?php echo site_url('bahan/cetak'); ?>" target="_blank" class="btn bg-purple"><i class="fa fa-print"></i> Cetak Laporan Bahan</a><br><br>
-<?php else: ?>
-    <a href="<?php echo site_url('bahan/tambah'); ?>"><button type="button" class="btn btn-primary">Tambah Bahan</button></a>&nbsp;<a href="<?php echo site_url('bahan/cetak'); ?>" target="_blank" class="btn bg-purple"><i class="fa fa-print"></i> Cetak Laporan Bahan</a><br><br>
+<?php if ($this->session->userdata('jenis_pengguna') == 'admin' || $this->session->userdata('jenis_pengguna') == 'pemilik'): ?>
+  <a href="<?php echo site_url('bahan/tambah'); ?>"><button type="button" class="btn btn-primary">Tambah Bahan</button></a>&nbsp;<a href="<?php echo site_url('bahan/cetak'); ?>" target="_blank" class="btn bg-purple"><i class="fa fa-print"></i> Cetak Laporan Bahan</a><br><br>
+<?php elseif($this->session->userdata('jenis_pengguna') == 'gudang') : ?>
+  <a href="<?php echo site_url('bahan/tambah'); ?>"><button type="button" class="btn btn-primary">Tambah Bahan</button></a><br><br>
 <?php endif ?>
 <table id="example1" class="table table-bordered table-striped">
   <thead>
