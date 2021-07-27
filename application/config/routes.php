@@ -43,6 +43,6 @@ $route['pesanan/tahun/cetak'] = 'laporan/tahun_cetak';
 
 $route['home'] = 'home';
 
-$route['default_controller'] = 'login';
+$route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
