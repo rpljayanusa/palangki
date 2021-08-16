@@ -1,19 +1,21 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Laporan extends CI_Controller {
+class Laporan extends CI_Controller
+{
 
-	public function __construct(){
-    	parent::__construct();
+	public function __construct()
+	{
+		parent::__construct();
 		$this->load->model(array('laporan_model'));
-    	$this->load->helper(array('url_helper', 'form', 'url'));
+		$this->load->helper(array('url_helper', 'form', 'url'));
 		$this->load->library(array('form_validation'));
-  	}
+	}
 
 	public function pelanggan()
 	{
-		$data=array(
-			'konten'=>'pelanggan',
+		$data = array(
+			'konten' => 'pelanggan',
 			'halaman' => 'Pelanggan',
 			'judul' => 'Palangki',
 			'judul_box' => 'Daftar Pelanggan',
@@ -25,28 +27,27 @@ class Laporan extends CI_Controller {
 
 	public function pelanggan_cetak()
 	{
-		$data=array(
+		$data = array(
 			'pengguna' => $this->laporan_model->get_laporan_pelanggan(),
 			'tanggal' => $this->laporan_model->get_tanggal_pembayaran()
 		);
 
-	    if($data['pengguna'] != NULL && $data['tanggal'] != NULL){
+		if ($data['pengguna'] != NULL && $data['tanggal'] != NULL) {
 			$this->load->library('pdf');
 
 			$this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->filename = "pelanggan.pdf";
 			$this->pdf->load_view('pelanggan_cetak', $data);
-		}
-		else{
-			$this->session->set_flashdata('error',"Tidak ada data pada laporan yang diminta");
+		} else {
+			$this->session->set_flashdata('error', "Tidak ada data pada laporan yang diminta");
 			redirect('pelanggan');
 		}
 	}
 
 	public function pesanan()
 	{
-		$data=array(
-			'konten'=>'pesanan',
+		$data = array(
+			'konten' => 'pesanan',
 			'halaman' => 'Pesanan',
 			'judul' => 'Palangki',
 			'judul_box' => 'Pilih Pesanan Berdasarkan Tanggal, Bulan, Tahun'
@@ -57,8 +58,8 @@ class Laporan extends CI_Controller {
 
 	public function tanggal()
 	{
-		$data=array(
-			'konten'=>'tanggal',
+		$data = array(
+			'konten' => 'tanggal',
 			'halaman' => 'Pesanan',
 			'judul' => 'Palangki',
 			'judul_box' => 'Laporan Berdasakan Tanggal'
@@ -69,28 +70,27 @@ class Laporan extends CI_Controller {
 
 	public function tanggal_cetak()
 	{
-		$data=array(
+		$data = array(
 			'pembayaran' => $this->laporan_model->get_tanggal(),
 			'tanggal' => $this->laporan_model->get_tanggal_pembayaran()
 		);
 
-		if($data['pembayaran'] != NULL && $data['tanggal'] != NULL){
+		if ($data['pembayaran'] != NULL && $data['tanggal'] != NULL) {
 			$this->load->library('pdf');
 
 			$this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->filename = "tanggal.pdf";
 			$this->pdf->load_view('tanggal_cetak', $data);
-		}
-		else{
-			$this->session->set_flashdata('error',"Tidak ada data pada laporan yang diminta");
+		} else {
+			$this->session->set_flashdata('error', "Tidak ada data pada laporan yang diminta");
 			redirect('pesanan/tanggal');
 		}
 	}
 
 	public function bulan()
 	{
-		$data=array(
-			'konten'=>'bulan',
+		$data = array(
+			'konten' => 'bulan',
 			'halaman' => 'Pesanan',
 			'judul' => 'Palangki',
 			'judul_box' => 'Laporan Berdarkan Bulan'
@@ -101,28 +101,27 @@ class Laporan extends CI_Controller {
 
 	public function bulan_cetak()
 	{
-		$data=array(
+		$data = array(
 			'pembayaran' => $this->laporan_model->get_bulan(),
 			'bulan' => $this->laporan_model->get_bulan_pembayaran()
 		);
 
-	    if($data['pembayaran'] != NULL && $data['bulan'] != NULL){
+		if ($data['pembayaran'] != NULL && $data['bulan'] != NULL) {
 			$this->load->library('pdf');
 
 			$this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->filename = "bulan.pdf";
 			$this->pdf->load_view('bulan_cetak', $data);
-		}
-		else{
-			$this->session->set_flashdata('error',"Tidak ada data pada laporan yang diminta");
+		} else {
+			$this->session->set_flashdata('error', "Tidak ada data pada laporan yang diminta");
 			redirect('pesanan/bulan');
 		}
 	}
 
 	public function tahun()
 	{
-		$data=array(
-			'konten'=>'tahun',
+		$data = array(
+			'konten' => 'tahun',
 			'halaman' => 'Pesanan',
 			'judul' => 'Palangki',
 			'judul_box' => 'Laporan Berdarkan Tahun'
@@ -133,22 +132,44 @@ class Laporan extends CI_Controller {
 
 	public function tahun_cetak()
 	{
-		$data=array(
+		$data = array(
 			'pembayaran' => $this->laporan_model->get_tahun(),
 			'tahun' => $this->laporan_model->get_tahun_pembayaran()
 		);
 
-	    if($data['pembayaran'] != NULL && $data['tahun'] != NULL){
+		if ($data['pembayaran'] != NULL && $data['tahun'] != NULL) {
 			$this->load->library('pdf');
 
 			$this->pdf->setPaper('A4', 'potrait');
 			$this->pdf->filename = "tahun.pdf";
 			$this->pdf->load_view('tahun_cetak', $data);
-		}
-		else{
-			$this->session->set_flashdata('error',"Tidak ada data pada laporan yang diminta");
+		} else {
+			$this->session->set_flashdata('error', "Tidak ada data pada laporan yang diminta");
 			redirect('pesanan/tahun');
 		}
 	}
-
+	public function sudah_lunas()
+	{
+		$data = [
+			'title' => 'Laporan Pesanan Sudah Lunas',
+			'data' => $this->query_status('lunas')
+		];
+		$this->template->laporan('laporan/lap_sudah_lunas', $data);
+	}
+	public function belum_lunas()
+	{
+		$data = [
+			'title' => 'Laporan Pesanan Belum Lunas',
+			'data' => $this->query_status('belum lunas')
+		];
+		$this->template->laporan('laporan/lap_belum_lunas', $data);
+	}
+	public function query_status($status)
+	{
+		return $this->db->from('pembayaran')
+			->join('pemesanan', 'pemesanan.kode_pesanan = pembayaran.kode_pesanan')
+			->join('produk', 'produk.kode_produk = pemesanan.kode_produk')
+			->where('status', $status)
+			->get()->result();
+	}
 }
