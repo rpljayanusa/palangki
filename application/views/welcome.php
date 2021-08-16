@@ -44,8 +44,16 @@
                 </section>
                 <section class="content">
                     <div class="row">
-                        <?php $data = $this->db->get('produk')->result_array();
-                        foreach ($data as $d) { ?>
+                        <?php
+                        $data = $this->db->get('produk')->result_array();
+                        $limit = 0;
+                        foreach ($data as $d) {
+                            if ($limit >= 4) {
+                                echo '</div><div class="row">';
+                                $limit = 0;
+                            }
+                            $limit++;
+                        ?>
                             <div class="col-md-3">
                                 <div class="box box-widget">
                                     <div class="box-body box-profile">
