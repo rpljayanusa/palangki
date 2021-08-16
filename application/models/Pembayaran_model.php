@@ -44,13 +44,14 @@ class Pembayaran_model extends CI_Model
         return $query->row();
     }
 
-    public function set_pembayaran($id)
+    public function set_pembayaran($id, $image)
     {
         $this->load->helper('url');
 
         $data = array(
             'kode_pesanan' => $id,
             'nama_pemesan' => $this->input->post('nama'),
+            'image' => $image,
             'status' => $this->input->post('status'),
             'tanggal' => date('Y-m-d')
         );
