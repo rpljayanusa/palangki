@@ -36,6 +36,7 @@
                         <a href="<?php echo site_url('pembayaran/update/' . $pembayaran_item->kode_pembayaran); ?>" class="btn btn-warning btn-circle" data-popup="tooltip" data-placement="top" title="Edit Data">Edit</a>
                         <a href="<?php echo site_url('pembayaran/delete/' . $pembayaran_item->kode_pembayaran); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data?');" class="btn btn-danger btn-circle" data-popup="tooltip" data-placement="top" title="Hapus Data">Hapus</a>
                     <?php elseif ($this->session->userdata('jenis_pengguna') == 'pelanggan') : ?>
+                        <a href="<?php echo site_url('pembayaran/tambah/' . $pembayaran_item->kode_pesanan); ?>" class="btn btn-primary btn-circle" data-popup="tooltip" data-placement="top" title="Pembayaran">Bayar</a>
                         <a href="<?php echo site_url('pembayaran/cetak_invoice/' . $pembayaran_item->kode_pembayaran); ?>" target="_blank" class="btn btn-primary" data-popup="tooltip" data-placement="top" title="Kwitansi ">Kwitansi</a>
                     <?php endif ?>
                     </div>
