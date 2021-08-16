@@ -85,6 +85,7 @@ class Laporan extends CI_Controller
 			$this->session->set_flashdata('error', "Tidak ada data pada laporan yang diminta");
 			redirect('pesanan/tanggal');
 		}
+		// $this->load->view('tanggal_cetak', $data);
 	}
 
 	public function bulan()

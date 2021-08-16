@@ -36,3 +36,13 @@
         </tr>
     </tbody>
 </table>
+<table border="0" style="width: 100%; padding-top:15px;">
+    <tr>
+        <td width="85%"></td>
+        <td style="border-bottom: none;">
+            Padang, <?= format_indo(date('Y-m-d')) ?><br>
+            <br><br><br><br><br><br>
+            Pemilik
+        </td>
+    </tr>
+</table>

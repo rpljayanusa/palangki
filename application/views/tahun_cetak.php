@@ -1,48 +1,66 @@
 <!DOCTYPE>
 <html>
+
 <head>
 	<title>Plang-Q Sport</title>
 	<style type="text/css">
-		table, th, td {
-		    border: 1px solid black;
+		table,
+		th,
+		td {
+			border: 1px solid black;
 		}
+
 		th {
 			text-align: center;
 		}
+
 		h3 {
 			text-align: center;
 		}
 	</style>
 </head>
+
 <body>
-	<p><?php echo "Tahun: ".$newDate = date("Y", strtotime($tahun->tanggal)); ?></p>
-    <table width="100%">
-	    <thead>
-	    <tr>
-          <th>No</th>
-          <th>Kode Pesanan</th>
-	      <th>Kode Produk</th>
-	      <th>Nama Produk</th>
-		  <th>Tanggal Pesan</th>
-	      <th>Jumlah</th>
-	      <th>Total</th>
-		  <th>Status</th>
-	    </tr>
-	    </thead>
-	    <tbody>
-	    <?php $no=1; foreach($pembayaran as $pembayaran_item): ?>
-	    <tr>
-	      <th><?php echo $no++; ?></th>
-	      <th><?php echo $pembayaran_item->kode_pesanan; ?></th>
-	      <th><?php echo $pembayaran_item->kode_produk; ?></th>
-	      <th><?php echo $pembayaran_item->nama_produk; ?></th>
-		  <th><?php echo $pembayaran_item->tanggal; ?></th>
-	      <th><?php echo $pembayaran_item->jumlah_pesanan; ?></th>
-	      <th><?php echo $pembayaran_item->total_harga; ?></th>
-		  <th><?php echo $pembayaran_item->status; ?></th>
-	    </tr>
-	    <?php endforeach; ?>
-	    </tbody>
-	  </table>
+	<p><?php echo "Tahun: " . $newDate = date("Y", strtotime($tahun->tanggal)); ?></p>
+	<table width="100%">
+		<thead>
+			<tr>
+				<th>No</th>
+				<th>Kode Pesanan</th>
+				<th>Kode Produk</th>
+				<th>Nama Produk</th>
+				<th>Tanggal Pesan</th>
+				<th>Jumlah</th>
+				<th>Total</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php $no = 1;
+			foreach ($pembayaran as $pembayaran_item) : ?>
+				<tr>
+					<th><?php echo $no++; ?></th>
+					<th><?php echo $pembayaran_item->kode_pesanan; ?></th>
+					<th><?php echo $pembayaran_item->kode_produk; ?></th>
+					<th><?php echo $pembayaran_item->nama_produk; ?></th>
+					<th><?php echo $pembayaran_item->tanggal; ?></th>
+					<th><?php echo $pembayaran_item->jumlah_pesanan; ?></th>
+					<th><?php echo $pembayaran_item->total_harga; ?></th>
+					<th><?php echo $pembayaran_item->status; ?></th>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+	<table style="width: 100%; padding-top:15px; border: none;">
+		<tr>
+			<td width="70%" style="border: none;"></td>
+			<td style="border: none;">
+				Padang, <?= format_indo(date('Y-m-d')) ?><br>
+				<br><br><br><br><br><br>
+				Pemilik
+			</td>
+		</tr>
+	</table>
 </body>
+
 </html>
