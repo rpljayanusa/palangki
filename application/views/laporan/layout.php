@@ -52,7 +52,7 @@
     </style>
 </head>
 
-<body>
+<body onload="window.print()">
     <table class="tabel-header" style="padding-bottom: 15px;">
         <tbody>
             <tr>
