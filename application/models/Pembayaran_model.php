@@ -51,6 +51,7 @@ class Pembayaran_model extends CI_Model
         $data = array(
             'kode_pesanan' => $id,
             'nama_pemesan' => $this->input->post('nama'),
+            'jumlah_bayar' => $this->input->post('jumlah'),
             'image' => $image,
             'status' => $this->input->post('status'),
             'tanggal' => date('Y-m-d')

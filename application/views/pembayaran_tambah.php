@@ -1,3 +1,7 @@
+<?php
+$idpesan = $pemesanan_item->kode_pesanan;
+$jumlah_bayar = $this->db->query("SELECT SUM(jumlah_bayar) AS total FROM pembayaran WHERE kode_pesanan='$idpesan'")->row_array();
+?>
 <form action="<?php echo site_url('pembayaran/tambah/' . $pemesanan_item->kode_pesanan); ?>" method="post" enctype="multipart/form-data">
     <?php if ($this->session->userdata('jenis_pengguna') != 'pelanggan') { ?>
         <div class="form-group">
@@ -21,7 +25,21 @@
         <div class="form-group">
             <label class='col-md-3'>Total Harga</label>
             <div class='col-md-9'>
-                <input type="number" disabled="disabled" value="<?php echo $pemesanan_item->total_harga; ?>" name="harga" class="form-control" required>
+                <input type="text" disabled="disabled" value="<?php echo $pemesanan_item->total_harga; ?>" class="form-control">
+            </div>
+        </div>
+        <br><br>
+        <div class="form-group">
+            <label class='col-md-3'>Sisa Pembayaran</label>
+            <div class='col-md-9'>
+                <input type="text" class="form-control" value="<?= $pemesanan_item->total_harga - $jumlah_bayar['total'] ?>" disabled>
+            </div>
+        </div>
+        <br><br>
+        <div class="form-group">
+            <label class='col-md-3'>Jumlah Bayar</label>
+            <div class='col-md-9'>
+                <input type="number" name="jumlah" class="form-control" required>
             </div>
         </div>
         <br><br>
@@ -45,6 +63,27 @@
     <?php } else { ?>
         <input type="hidden" name="nama" value="<?php echo $this->session->userdata('username') ?>">
         <input type="hidden" name="status" value="lunas">
+        <div class="form-group">
+            <label class='col-md-3'>Total Harga</label>
+            <div class='col-md-9'>
+                <input type="text" disabled="disabled" value="<?php echo $pemesanan_item->total_harga; ?>" class="form-control">
+            </div>
+        </div>
+        <br><br><br>
+        <div class="form-group">
+            <label class='col-md-3'>Sisa Pembayaran</label>
+            <div class='col-md-9'>
+                <input type="text" class="form-control" value="<?= $pemesanan_item->total_harga - $jumlah_bayar['total'] ?>" disabled>
+            </div>
+        </div>
+        <br><br>
+        <div class="form-group">
+            <label class='col-md-3'>Jumlah Bayar</label>
+            <div class='col-md-9'>
+                <input type="number" name="jumlah" class="form-control" required>
+            </div>
+        </div>
+        <br><br>
     <?php } ?>
     <div class="form-group">
         <label class='col-md-3'>Bukti Bayar</label>
